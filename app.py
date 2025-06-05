@@ -21,7 +21,7 @@ app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 # Limits file uploads to 5MB and saves them in the uploads/ folder.
 
 # Load SBERT model
-model = SentenceTransformer('../models/sbert-finetuned-resumes')
+model = SentenceTransformer('all-MiniLM-L6-v2')
 # Loads the pretrained Sentence-BERT model, which converts full text (like resumes) into a numerical embedding representing its meaning.
 # This model was trained to understand semantic similarity between sentences.
 
@@ -35,20 +35,19 @@ def read_pdf(file_path):
 
 
 def create_donut_chart(score, out_path="static/donut.png"):
-    fig = plt.figure(figsize=(5, 5), facecolor="#eef3f8")
+    plt.figure(figsize=(4, 4))
     sizes = [score, 100 - score]
-    colors = ['#0073b1', '#dddddd']
-    labels = ['', '']
+    colors = ['#4CAF50', '#dddddd']
+    labels = [f'{score}% Match', '']
 
     wedges, _ = plt.pie(sizes, colors=colors, startangle=90, labels=labels)
-    centre_circle = plt.Circle((0, 0), 0.70, fc='#eef3f8')
-    ax = fig.gca()
-    ax.add_artist(centre_circle)
-    ax.set_facecolor("#eef3f8")
+    centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+    fig = plt.gcf()
+    fig.gca().add_artist(centre_circle)
 
-    plt.text(0, 0, f"{score}%", ha='center', va='center', fontsize=32, fontweight='bold', color="#0073b1")
+    plt.title("Resume Match Score")
     plt.tight_layout()
-    plt.savefig(out_path, facecolor=fig.get_facecolor())
+    plt.savefig(out_path)
     plt.close()
 
 #This defines the main web page (/) and allows both loading the form (GET) and submitting it (POST).

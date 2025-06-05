@@ -1,0 +1,7 @@
+Flask
+sentence-transformers
+matplotlib
+PyMuPDF
+scikit-learn
+nltk
+gunicorn
