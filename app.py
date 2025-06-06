@@ -22,8 +22,7 @@ app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 # Limits file uploads to 5MB and saves them in the uploads/ folder.
 
 # Load SBERT model
-device = 'cpu'
-model = SentenceTransformer('joeportnoy/resume-match-ml', device=device)
+model = SentenceTransformer('joeportnoy/resume-match-ml', device='cpu')
 # Loads the pretrained Sentence-BERT model, which converts full text (like resumes) into a numerical embedding representing its meaning.
 # This model was trained to understand semantic similarity between sentences.
 
