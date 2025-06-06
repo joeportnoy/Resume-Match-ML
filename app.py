@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 from sentence_transformers import SentenceTransformer, util #loads a pretrained model that converts text into numerical embeddings (vectors).
 # util computes cosine similarity between those vectors (i.e., how similar two texts are).
+import torch
 import os
 import fitz  # reads PDF files (PyMuPDF library).
 import matplotlib
@@ -21,7 +22,8 @@ app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 # Limits file uploads to 5MB and saves them in the uploads/ folder.
 
 # Load SBERT model
-model = SentenceTransformer('models/sbert-finetuned-resumes')
+device = 'cpu'
+model = SentenceTransformer('models/sbert-finetuned-resumes', device=device)
 # Loads the pretrained Sentence-BERT model, which converts full text (like resumes) into a numerical embedding representing its meaning.
 # This model was trained to understand semantic similarity between sentences.
 
