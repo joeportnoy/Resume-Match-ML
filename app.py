@@ -23,7 +23,7 @@ app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 
 # Load SBERT model
 device = 'cpu'
-model = SentenceTransformer('models/sbert-finetuned-resumes', device=device)
+model = SentenceTransformer('https://huggingface.co/joeportnoy/resume-match-ml', device=device)
 # Loads the pretrained Sentence-BERT model, which converts full text (like resumes) into a numerical embedding representing its meaning.
 # This model was trained to understand semantic similarity between sentences.
 
